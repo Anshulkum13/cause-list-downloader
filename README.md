@@ -30,9 +30,3 @@ A web-based UI tool to fetch and download daily cause lists from Indian eCourts 
 
 ---
 
-## 🚀 Getting Started
-
-### 1. Clone the Repo
-```bash
-git clone https://github.com/your-username/cause-list-downloader.git
-cd cause-list-downloader
