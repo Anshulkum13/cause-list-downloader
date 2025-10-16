@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cause List Downloader</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>📄 Cause List Downloader</h1>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flash">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+      <label for="state">State Name:</label>
+      <input type="text" id="state" name="state" required>
+
+      <label for="district">District:</label>
+      <input type="text" id="district" name="district" required>
+
+      <label for="complex">Court Complex:</label>
+      <input type="text" id="complex" name="complex" required>
+
+      <label for="court">Court Name (optional):</label>
+      <input type="text" id="court" name="court">
+
+      <label for="date">Cause List Date:</label>
+      <input type="date" id="date" name="date" required>
+
+      <label>
+        <input type="checkbox" name="allCourts" id="allCourts">
+        Download cause list for all courts in this complex
+      </label>
+
+      <button type="submit">Download PDF</button>
+    </form>
+  </div>
+
+  <script>
+    const allCourtsCheckbox = document.getElementById('allCourts');
+    const courtInput = document.getElementById('court');
+
+    function toggleCourtRequirement() {
+      if (allCourtsCheckbox.checked) {
+        courtInput.removeAttribute('required');
+      } else {
+        courtInput.setAttribute('required', 'required');
+      }
+    }
+
+    allCourtsCheckbox.addEventListener('change', toggleCourtRequirement);
+    window.addEventListener('load', toggleCourtRequirement);
+  </script>
+</body>
+</html>
